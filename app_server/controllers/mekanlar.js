@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-const anaSayfa=function(req,res,next){
-    res.render('anaSayfa',{title: 'Anasayfa'});
+const anasayfa=function(req,res,next){
+    res.render('anasayfa',{title: 'Anasayfa'});
 };
 
 const mekanBilgisi=function(req,res,next){
@@ -14,7 +14,7 @@ const yorumEkle=function(req,res,next){
 };
 
 module.exports={
-    anaSayfa,
+    anasayfa,
     mekanBilgisi,
     yorumEkle
 }
