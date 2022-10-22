@@ -1,69 +1,30 @@
 extends layout
+include fonksiyonlar/yildiz
 block content
   #banner.page-header 
     .row 
       .col-lg-6
         h1 
-          | MekanBul 
-          small &nbsp; Civardaki mekanları keşfet!
+          | #{sayfaBaslik.siteAd} 
+          small &nbsp; #{sayfaBaslik.slogan}
   .row 
-    .row.list-group 
-    .col-xs-12.col-sm-12 
-      .col-xs-12.list-group-item
-        h4 
-          a(href='/mekan') Bilgisayar Müh 
-          small &nbsp;
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star-empty
-        span.badge.pull-right.badge-deafult 1km
-        p.address SDÜ Batı Kampüsü 
-        p 
-          span.label.label-warning Mühendis Gençler 
-          | &nbsp;
-          span.label.label-warning Sinan Hoca
+    each mekan in mekanlar
+      .row.list-group 
+      .col-xs-12.col-sm-12 
+        .col-xs-12.list-group-item
+          h4 
+            a(href='/mekan') #{mekan.ad}
+            small &nbsp;
+            +puanOlustur(mekan.puan)
+          span.badge.pull-right.badge-deafult #{mekan.mesafe}
+          p.address #{mekan.adres} 
+          p 
+            each imkan in mekan.imkanlar
+              span.label.label-warning #{imkan} 
+              | &nbsp;
+          
   
-  .row 
-    .row.list-group 
-    .col-xs-12.col-sm-12 
-      .col-xs-12.list-group-item
-        h4 
-          a(href='/mekan') Bilgisayar Müh 
-          small &nbsp;
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star-empty
-        span.badge.pull-right.badge-deafult 1km
-        p.address SDÜ Batı Kampüsü 
-        p 
-          span.label.label-warning Mühendis Gençler 
-          | &nbsp;
-          span.label.label-warning Sinan Hoca
-  .row 
-    .row.list-group 
-    .col-xs-12.col-sm-12 
-      .col-xs-12.list-group-item
-        h4 
-          a(href='/mekan') Bilgisayar Müh 
-          small &nbsp;
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star
-          span.glyphicon.glyphicon-star-empty
-        span.badge.pull-right.badge-deafult 1km
-        p.address SDÜ Batı Kampüsü 
-        p 
-          span.label.label-warning Mühendis Gençler 
-          | &nbsp;
-          span.label.label-warning Sinan Hoca
-
-
-
+  
 
         
 
