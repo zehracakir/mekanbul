@@ -18,6 +18,6 @@ var mekanSema = new mongoose.Schema({
     imkanlar:[String],
     koordinat:{type:[Number],index:"2dsphere"},
     saatler:[saatSema],
-    yorumSema:[yorumSema]
+    yorumlar:[yorumSema]
 });
 mongoose.model("mekan",mekanSema,"mekanlar");
