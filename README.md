@@ -1,7 +1,7 @@
 # MekanBul Rest Api Adresleri
 ---
 1. [Girilen Konum Civarındaki Mekanları Listele](https://mekanbul5.zehracakir.repl.co/api/mekanlar?enlem=37.83226584629666&boylam=30.524732239878013)
-![](/resimler/getEnlemBoylam.PNG)
+![](/resimler/getEnlemBoylam1.PNG)
 
 2. [Mekanın ID ile Mekan Bilgilerini Getir](https://mekanbul5.zehracakir.repl.co/api/mekanlar/63766f90869a9fa3edcc744a)
 ![](/resimler/mekanIDileMekanBilgileriGetir.PNG)
