@@ -52,7 +52,7 @@ var yorumOlustur=function(req,res,gelenMekan){
         });
     }
 }
-
+//push denemesi
 const yorumEkle =(req,res) => {//request ve response alıyor
    const mekanid=req.params.mekanid;
    if(mekanid){
