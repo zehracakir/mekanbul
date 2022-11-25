@@ -180,4 +180,3 @@ module.exports={
     yorumGuncelle,
     yorumGetir
 }
-//test
