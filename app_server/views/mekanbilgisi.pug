@@ -1,5 +1,6 @@
 extends layout
 include fonksiyonlar/yildiz
+include fonksiyonlar/tarihformat
 block content
   .row.page-header 
     .col-lg-12 
@@ -34,8 +35,8 @@ block content
             .panel-heading 
               h2.panel-title Konum Bilgisi
             .panel-body 
-              -var enlem=mekanDetay.koordinatlar.enlem
-              -var boylam=mekanDetay.koordinatlar.boylam
+              -var enlem=mekanDetay.koordinat.enlem
+              -var boylam=mekanDetay.koordinat.boylam
                img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center='+enlem+','+boylam+'&zoom=12&size=600x400&markers='+enlem+','+boylam+'&key=AIzaSyCmmKygTpBzHGOZEciJpAdxC9v_tWHagnE')
   .row 
     .col-xs-12 
@@ -51,6 +52,7 @@ block content
                   span.rating 
                     +puanOlustur(yorum.puan) 
                   span.review-author= yorum.yorumYapan
-                  smalll.reviewTimestamp &nbsp; #{yorum.tarih}
+                  smalll.reviewTimestamp &nbsp;
+                  +tarihFormatla(yorum.tarih)
                 .col-xs-12
                   p= yorum.yorumMetni
