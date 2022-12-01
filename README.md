@@ -1,5 +1,3 @@
-# Mekanbul API Collections Test
-![Collection test](/resimler/zehraCakirMekanbulApiTesti.PNG)
+[https://mekanbul.zehracakir.repl.co/?enlem=37&boylam=35](https://mekanbul.zehracakir.repl.co/?enlem=37&boylam=35)
 
-# Mekanbul API Mocha Test
-![Mocha test](/resimler/npmRunTest.PNG)
+![odev7](/resimler/odev7.PNG)
