@@ -9,6 +9,7 @@ html
       .container 
         .navbar-header 
           a.navbar-brand(href='/') MekanBul
+          //mobil uyumlu hamburger stili menü oluştur
           button.navbar-toggle(type='button',data-toggle='collapse',data-target='#navbar-main')
             span.icon-bar 
             span.icon-bar 
@@ -16,7 +17,10 @@ html
         #navbar-main.navbar-collapse.collapse 
           ul.nav.navbar-nav 
             li 
+              a(href='/admin') Admin
+            li 
               a(href='/hakkinda') Hakkında
+        
   .container 
     block content
     footer 

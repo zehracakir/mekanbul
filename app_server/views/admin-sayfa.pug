@@ -1,0 +1,38 @@
+extends layout
+include fonksiyonlar/yildiz
+block content
+  #banner.page-header 
+    .row 
+      .col-lg-6
+        h1 
+          | #{sayfaBaslik.siteAd} 
+          small &nbsp; #{sayfaBaslik.slogan}
+          a(href="/admin/mekan/yeni").btn.btn-primary.pull-right() Mekan Ekle
+  .row 
+  .error=mesaj
+    each mekan in mekanlar
+      .row.list-group 
+      .col-xs-12.col-sm-12 
+        .col-xs-12.list-group-item
+          h4 
+            -var mekanid=mekan._id
+            a(href='/mekan/'+mekanid)=mekan.ad
+            small &nbsp;
+            +puanOlustur(mekan.puan)
+          //span.badge.pull-right.badge-deafult 999
+          span.btn.pull-right()
+            a(href="/admin/mekan/"+mekanid+'/sil').btn.btn-primary.pull-right() Mekan Sil
+          span.btn.pull-right()
+            a(href="/admin/mekan/"+mekanid+"/guncelle").btn.btn-primary.pull-right() Mekan Güncelle
+          p.address #{mekan.adres} 
+          p 
+            each imkan in mekan.imkanlar
+              span.label.label-warning #{imkan} 
+              | &nbsp;
+          
+  
+  
+
+        
+
+ 

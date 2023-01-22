@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .row.page-header
+    .col-lg-12
+      h1= title
+  .row
+    .col-xs-12.col-md-6
+        p Bu mekanı silmek istiyor musunuz?
+        form.form-horizontal(action="", method="post", role="form")
+            button.btn.btn-danger.pull-right Mekanı Sil
+    .col-xs-12.col-md-4

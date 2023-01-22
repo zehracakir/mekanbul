@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Mekan = mongoose.model("mekan");
-
+var Kullanici=mongoose.model("kullanici");
 const cevapOlustur = function(res,status,content){
     res.status(status).json(content);
 }
@@ -29,13 +29,13 @@ var ortalamaPuanGuncelle=function(mekanid){
         }
     }); //Mekan.findById(mekanid). sorguyu hazırlar
 }
-var yorumOlustur=function(req,res,gelenMekan){
+var yorumOlustur=function(req,res,gelenMekan,kullaniciAdi){
     if(!gelenMekan){
         cevapOlustur(res,404,{"mesaj":"mekanid bulunamadı",});
     }
     else{
         gelenMekan.yorumlar.push({ //veritabanına pushlama
-            yorumYapan:req.body.yorumYapan,
+            yorumYapan:kullaniciAdi,
             puan:req.body.puan,
             yorumMetni:req.body.yorumMetni,
             tarih:Date.now()
@@ -52,24 +52,40 @@ var yorumOlustur=function(req,res,gelenMekan){
         });
     }
 }
+const kullaniciGetir =(req,res,callback)=>{
+    if(req.auth && req.auth.eposta){
+        Kullanici.findOne({eposta:req.auth.eposta}).exec((hata,kullanici)=>{
+            if(!kullanici){
+                return res.status(404).json({"hata":"Kullanıcı bulunamadı!"});
+            }else if(hata){
+                return res.status(404).json(hata);
+            }
+            callback(req,res,kullanici.adsoyad);
+        });
+    }else{
+        return res.status(404).json({"hata":"Kullanıcı Bulunamadı!"})
+    }
+};
+
 //push denemesi
 const yorumEkle =(req,res) => {//request ve response alıyor
-   const mekanid=req.params.mekanid;
+kullaniciGetir(req,res,(req,res,kullaniciAdi)=>{
+         const mekanid=req.params.mekanid;
    if(mekanid){
     Mekan
         .findById(mekanid)
         .select("yorumlar")
-        .exec((hata,gelenMekan) => {
+        .exec((hata,mekan) => {
             if(hata){
                 res.status(400).json(hata);
             }else{
-                yorumOlustur(req,res,gelenMekan);
+                yorumOlustur(req,res,mekan,kullaniciAdi);
             }
         });
    }else{
-    res.status(404).json({mekan: "Mekan bulunamadı."});
+    res.status(404).json({"hata": "Mekan bulunamadı."});
    }
-
+});
 };
 const yorumSil = function(req,res){//request ve response alıyor
     if(!req.params.mekanid || !req.params.yorumid) {
@@ -178,6 +194,7 @@ module.exports={
     yorumEkle,
     yorumSil,
     yorumGuncelle,
-    yorumGetir
+    yorumGetir,
+    kullaniciGetir
 }
 //test

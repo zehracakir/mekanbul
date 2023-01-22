@@ -1,5 +1,6 @@
 var mongoose=require("mongoose");
 var Mekan=mongoose.model("mekan"); //nesneleri büyük harfle yazarız->Mekan
+//https://github.com/zehracakir
 const cevapOlustur=function(res,status,content){
     res.status(status).json(content);
 }
@@ -16,6 +17,25 @@ var cevrimler=(function() {
         kilometre2Radyan:kilometre2Radyan,
     };
 })();
+
+const tumMekanlariListele = function(req, res){ //admin sayfası iççin 
+    Mekan.find({}, function (hata, sonuclar){ //koleksiyon içindeki bütün verileri alır.
+    var mekanlar = [];
+      if (hata) {
+        cevapOlustur (res, 404, hata);
+      } else {//her bir sonucu dolaş ve mekanlara ekle
+        sonuclar.forEach(function(sonuc) {
+            mekanlar.push({
+                ad: sonuc.ad,
+                adres: sonuc.adres,
+                puan: sonuc.puan,
+                imkanlar: sonuc.imkanlar,
+                _id: sonuc._id
+            }); });
+        cevapOlustur (res, 200, mekanlar);
+        }
+    });
+};
 const mekanlariListele=async(req,res)=>{
     var boylam=parseFloat(req.query.boylam);
     var enlem=parseFloat(req.query.enlem);
@@ -154,5 +174,6 @@ module.exports={
     mekanGetir,
     mekanGuncelle,
     mekanlariListele,
-    mekanSil
+    mekanSil,
+    tumMekanlariListele
 }

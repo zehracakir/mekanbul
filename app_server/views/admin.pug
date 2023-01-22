@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .row.page-header 
+    .col-lg-12 
+  .row 
+    .col-xs-12.col-md-6 
+      form.form-horizontal(action='',method='post',role='form') 
+        .form-group
+          label.col-xs-10.col-sm-2.control-label(for='eposta') Eposta
+          .col-xs-12.col-sm-10 
+            input#name.form-control(name='eposta')
+        .form-group
+          label.col-xs-10.col-sm-2.control-label(for='sifre') Sifre
+          .col-xs-12.col-sm-10 
+            input#name.form-control(name='sifre')
+        
+        button.btn.btn-default.pull-right() Giris          
+        form.form-horizontal(action='',method='get',role='form')
+          a(href="/admin/kayitol").btn.btn-primary.pull-left() Kayıt
+        
